@@ -63,3 +63,35 @@
 - **Builder:** Quyết định quy trình xây dựng (build) object *như thế nào*.
 - **Template Method:** Subclass quyết định *một bước* cụ thể trong thuật toán.
 - **Iterator:** Quyết định cách duyệt qua một *collection* như thế nào.
+
+---
+
+## Abstract Factory
+
+- **Intent:** tạo families các object liên quan đến nhau mà không cần khai báo class cụ thể
+- **Problem:** Cần tạo nhiều object liên quan đến nhau, đảm bảo chúng cùng 1 style/family. Hai là thêm family mới ít cần sửa client code.  
+- **Solution:** 
+                 FurnitureFactory
+                /       |        \
+          createChair createSofa createTable
+              ↓           ↓          ↓
+       ┌──────────────────────────────┐
+       │       Modern Family          │
+       │ Chair + Sofa + Table         │
+       └──────────────────────────────┘
+
+### Pros and Cons
+- **Pros:** 
+  - Tránh sự phụ thuộc chặt chẽ giữa logic tạo object và đối tượng cụ thể được tạo ra.
+  - Đảm bảo Single Responsibility: Gom toàn bộ logic tạo object vào một nơi duy nhất.
+  - Dễ dàng thêm sản phẩm mới mà không làm hỏng (break) code hiện tại.
+- **Cons:** 
+  - Làm tăng độ phức tạp của codebase do phải tạo thêm class/interface. Phương pháp này hoạt động tốt nhất khi hệ thống đã có sẵn cấu trúc các lớp con (subclasses).
+
+### Relations with other patterns:
+- **Factory Method:** Subclass quyết định tạo ra *cái gì*.
+- **Abstract Factory:** Factory quyết định tạo ra cả một *họ (family) các đối tượng* nào.
+- **Prototype:** Trả về kết quả bằng cách *copy* một object đã có sẵn.
+- **Builder:** Quyết định quy trình xây dựng (build) object *như thế nào*.
+- **Template Method:** Subclass quyết định *một bước* cụ thể trong thuật toán.
+- **Iterator:** Quyết định cách duyệt qua một *collection* như thế nào.
